@@ -47,8 +47,8 @@ A vendor-agnostic LLM execution layer for Laravel applications that provides a u
 
 ## Requirements
 
-- PHP 8.1+
-- Laravel 10.0+
+- PHP 8.2+
+- Laravel 9.28+
 - Laravel Nova 4.0+ (optional, for admin interface)
 
 ## Supported Providers
@@ -502,7 +502,7 @@ class CustomLlmDriver extends AbstractDriver
     
     protected function execute(Request $request): Response
     {
-        // Prepare payload based on your provider's API from the Request object
+   [composer.json](composer.json)     // Prepare payload based on your provider's API from the Request object
         // Make API request call to your LLM provider
         // Map The provider response to the Response object
         // Return the  Response object    
