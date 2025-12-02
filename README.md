@@ -382,7 +382,7 @@ echo "Age: " . $personData['age'];
 
 ### Automatic Fallbacks
 
-Configure automatic failover between built-in providers:
+Configure automatic failover between clients if the primary client fails:
 
 ```php
 // config/llm-orchestrator.php
@@ -391,7 +391,7 @@ Configure automatic failover between built-in providers:
     'clients' => ['claude', 'gemini'], // Fallback order if primary fails
 ],
 
-// If OpenAI fails, automatically tries Claude, then Gemini (all built-in providers)
+// If OpenAI fails, automatically tries Claude, then Gemini.
 $response = Llm::using('openai')->prompt('Generate a story');
 ```
 
@@ -521,9 +521,6 @@ class CustomLlmDriver extends AbstractDriver
     ],
 ],
 ```
-
-Custom drivers can leverage the built-in cost tracking mechanism or implement their own. The `AbstractDriver` provides helper methods for cost calculation if you define pricing in the config.
-
 ## Configuration
 
 Check the published configuration file at `config/llm-orchestrator.php` for all available settings. The config includes:
