@@ -8,33 +8,38 @@ A vendor-agnostic LLM execution layer for Laravel applications that provides a u
 
 ## Table of Contents
 
-- [Features](#features)
-- [Requirements](#requirements)
-- [Supported Providers](#supported-providers)
-- [Installation](#installation)
-- [Core Concepts](#core-concepts)
-- [Quick Start](#quick-start)
-- [Basic Usage](#basic-usage)
-  - [Simple Prompts](#simple-prompts)
-  - [Multi-turn Conversations](#multi-turn-conversations)
-  - [Multimedia Content](#multimedia-content)
-  - [Complex Requests](#complex-requests)
-- [Advanced Features](#advanced-features)
-  - [Process Mapping](#process-mapping)
-  - [Function Calling & Tools](#function-calling--tools)
-  - [Structured Output](#structured-output)
-  - [Automatic Fallbacks](#automatic-fallbacks)
-  - [Raw Provider Access](#raw-provider-access)
-- [Custom Drivers](#custom-drivers)
-- [Analytics & Monitoring](#analytics--monitoring)
-- [Configuration](#configuration)
-- [Performance Optimization](#performance-optimization)
-- [Error Handling](#error-handling)
-- [Testing](#testing)
-- [Contributing](#contributing)
-- [Security](#security)
-- [License](#license)
-- [Credits](#credits)
+- [Laravel LLM Orchestrator](#laravel-llm-orchestrator)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [Requirements](#requirements)
+  - [Supported Providers](#supported-providers)
+  - [Core Concepts](#core-concepts)
+    - [Clients vs Drivers](#clients-vs-drivers)
+  - [Installation](#installation)
+  - [Quick Start](#quick-start)
+    - [Configure Your Providers](#configure-your-providers)
+  - [Basic Usage](#basic-usage)
+    - [Simple Prompts](#simple-prompts)
+    - [Multi-turn Conversations](#multi-turn-conversations)
+    - [Multimedia Content](#multimedia-content)
+    - [Complex Requests](#complex-requests)
+  - [Advanced Features](#advanced-features)
+    - [Process Mapping](#process-mapping)
+    - [Function Calling \& Tools](#function-calling--tools)
+    - [Structured Output](#structured-output)
+    - [Automatic Fallbacks](#automatic-fallbacks)
+    - [Raw Provider Access](#raw-provider-access)
+  - [Analytics \& Monitoring](#analytics--monitoring)
+    - [Execution Logging](#execution-logging)
+    - [Daily Metrics](#daily-metrics)
+  - [Error Handling](#error-handling)
+  - [Custom Drivers](#custom-drivers)
+  - [Configuration](#configuration)
+  - [Testing](#testing)
+  - [Contributing](#contributing)
+  - [Security](#security)
+  - [License](#license)
+  - [Credits](#credits)
 
 ## Features
 
@@ -502,7 +507,7 @@ class CustomLlmDriver extends AbstractDriver
     
     protected function execute(Request $request): Response
     {
-   [composer.json](composer.json)     // Prepare payload based on your provider's API from the Request object
+        // Prepare payload based on your provider's API from the Request object
         // Make API request call to your LLM provider
         // Map The provider response to the Response object
         // Return the  Response object    
