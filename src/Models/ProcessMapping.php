@@ -8,12 +8,9 @@ class ProcessMapping extends Model
 {
     protected $guarded = [];
 
-    protected function casts(): array
-    {
-        return [
-            'is_active' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
 
     public function __construct(array $attributes = [])
     {

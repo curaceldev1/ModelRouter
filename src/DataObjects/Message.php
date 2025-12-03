@@ -2,15 +2,15 @@
 
 namespace Curacel\LlmOrchestrator\DataObjects;
 
-final readonly class Message
+final class Message
 {
     /**
      * @param  string|Content|array<int, Content>  $content
      */
     public function __construct(
-        public string $role,
-        public string|Content|array $content,
-        public ?array $additionalProperties = [],
+        public readonly string $role,
+        public readonly string|Content|array $content,
+        public readonly ?array $additionalProperties = [],
     ) {}
 
     /**

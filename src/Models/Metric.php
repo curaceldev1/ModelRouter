@@ -8,13 +8,10 @@ class Metric extends Model
 {
     protected $guarded = [];
 
-    protected function casts(): array
-    {
-        return [
-            'date' => 'date:Y-m-d',
-            'total_cost' => 'decimal:6',
-        ];
-    }
+    protected $casts = [
+        'date' => 'date:Y-m-d',
+        'total_cost' => 'decimal:6',
+    ];
 
     public function __construct(array $attributes = [])
     {

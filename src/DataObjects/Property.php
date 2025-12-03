@@ -4,7 +4,7 @@ namespace Curacel\LlmOrchestrator\DataObjects;
 
 use Curacel\LlmOrchestrator\Enums\PropertyType;
 
-final readonly class Property
+final class Property
 {
     /**
      * @param  array<int, Property>  $properties  For object types
@@ -12,14 +12,14 @@ final readonly class Property
      * @param  array<int, mixed>|null  $enum  Allowed values
      */
     public function __construct(
-        public string $name,
-        public PropertyType $type,
-        public ?string $description = null,
-        public bool $required = false,
-        public array $properties = [],
-        public ?Property $items = null,
-        public ?array $enum = null,
-        public mixed $default = null,
+        public readonly string $name,
+        public readonly PropertyType $type,
+        public readonly ?string $description = null,
+        public readonly bool $required = false,
+        public readonly array $properties = [],
+        public readonly ?Property $items = null,
+        public readonly ?array $enum = null,
+        public readonly mixed $default = null,
     ) {}
 
     /**

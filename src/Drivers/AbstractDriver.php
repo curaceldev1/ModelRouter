@@ -161,11 +161,9 @@ abstract class AbstractDriver
             'cost' => $response?->cost,
             'is_successful' => $response !== null,
             'finish_reason' => $response?->finishReason,
+            'failed_reason' => $failedReason,
             'request_data' => $this->prepareRequestDataForLogging($request),
             'response_data' => $response ? $this->prepareResponseDataForLogging($response) : null,
-            'metadata' => array_merge([],
-                $failedReason ? ['failed_reason' => $failedReason] : []
-            ),
         ];
     }
 

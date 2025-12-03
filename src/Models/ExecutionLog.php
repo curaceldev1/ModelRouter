@@ -8,14 +8,11 @@ class ExecutionLog extends Model
 {
     protected $guarded = [];
 
-    protected function casts(): array
-    {
-        return [
-            'request_data' => 'array',
-            'response_data' => 'array',
-            'is_successful' => 'boolean',
-        ];
-    }
+    protected $casts = [
+        'request_data' => 'array',
+        'response_data' => 'array',
+        'is_successful' => 'boolean',
+    ];
 
     public function __construct(array $attributes = [])
     {

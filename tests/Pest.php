@@ -2,7 +2,7 @@
 
 use Curacel\LlmOrchestrator\Tests\TestCase;
 
-pest()->extend(TestCase::class)->in(__DIR__);
+uses(TestCase::class)->in(__DIR__);
 
 /**
  * Helper function to invoke protected/private methods using reflection.

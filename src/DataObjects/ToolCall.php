@@ -2,16 +2,16 @@
 
 namespace Curacel\LlmOrchestrator\DataObjects;
 
-final readonly class ToolCall
+final class ToolCall
 {
     /**
      * @param  array<string, mixed>  $arguments
      */
     public function __construct(
-        public string $id,
-        public string $name,
-        public string $type = 'function',
-        public array $arguments = [],
+        public readonly string $id,
+        public readonly string $name,
+        public readonly string $type = 'function',
+        public readonly array $arguments = [],
     ) {}
 
     /**

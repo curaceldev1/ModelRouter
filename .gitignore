@@ -25,8 +25,6 @@ _ide_helper_models.php
 /.vscode
 
 # Misc
-phpunit.xml.dist
-phpstan.neon.dist
 testbench.yaml
 /docs
 /coverage

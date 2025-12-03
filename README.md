@@ -35,6 +35,11 @@ A vendor-agnostic LLM execution layer for Laravel applications that provides a u
   - [Error Handling](#error-handling)
   - [Custom Drivers](#custom-drivers)
   - [Configuration](#configuration)
+  - [Laravel Nova Integration](#laravel-nova-integration)
+    - [Setup](#setup)
+    - [Resources](#resources)
+    - [Dashboard Cards](#dashboard-cards)
+  - [Log Management](#log-management)
   - [Testing](#testing)
   - [Contributing](#contributing)
   - [Security](#security)
@@ -52,8 +57,8 @@ A vendor-agnostic LLM execution layer for Laravel applications that provides a u
 
 ## Requirements
 
-- PHP 8.2+
-- Laravel 9.28+
+- PHP 8.1+
+- Laravel 10+
 - Laravel Nova 4.0+ (optional, for admin interface)
 
 ## Supported Providers
@@ -543,6 +548,70 @@ Key configuration concepts:
 - **Custom drivers** require you to implement the driver interface
 - **Models** configuration is optional and only used for pricing/UI purposes
 - **Process mappings** work from both database and config (database takes priority)
+
+
+## Laravel Nova Integration
+
+The package provides Nova admin interfaces for managing your LLM data.
+
+### Setup
+
+Nova integration is disabled by default. To enable it, set the following in your `.env` file:
+
+```env
+LLM_NOVA_ENABLED=true
+```
+
+
+### Resources
+
+- **Process Mappings** - Manage LLM process configurations
+- **Execution Logs** - View request/response logs (read-only)
+- **Metrics** - View daily metrics (read-only)
+
+### Dashboard Cards
+
+Add LLM cards to your main dashboard:
+
+```php
+// app/Nova/Dashboards/Main.php
+use Curacel\LlmOrchestrator\Nova\Cards\{TotalRequests, SuccessRate, TotalCost};
+
+class Main extends Dashboard
+{
+    public function cards(): array
+    {
+        return [
+            // ...other cards...
+            new TotalRequests(),
+            new SuccessRate(),
+            new TotalCost(),
+        ];
+    }
+}
+```
+
+## Log Management
+
+Clean up old execution logs:
+
+```bash
+# Prune all logs
+php artisan llm:prune-logs
+
+# Prune logs older than 24 hours
+php artisan llm:prune-logs --hours=24
+
+# Prune logs older than 7 days  
+php artisan llm:prune-logs --hours=168
+```
+
+Automate with Laravel scheduler:
+
+```php
+// app/Console/Kernel.php
+$schedule->command('llm:prune-logs --hours=168')->dailyAt('02:00');
+```
 
 
 ## Testing

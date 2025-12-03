@@ -8,10 +8,10 @@ final class Tool
      * @param  array<int, Property>  $properties
      */
     public function __construct(
-        public string $name,
-        public ?string $description = null,
-        public array $properties = [],
-        public bool $strict = false,
+        public readonly string $name,
+        public readonly ?string $description = null,
+        public readonly array $properties = [],
+        public readonly bool $strict = false,
     ) {}
 
     /**

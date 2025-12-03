@@ -2,7 +2,7 @@
 
 namespace Curacel\LlmOrchestrator\DataObjects;
 
-final readonly class Response
+final class Response
 {
     /**
      * @param  array<string, mixed>  $metadata
@@ -10,17 +10,17 @@ final readonly class Response
      * @param  array<string, mixed>  $structuredOutput
      */
     public function __construct(
-        public mixed $content,
-        public string $driver,
-        public string $model,
-        public int $inputTokens,
-        public int $outputTokens,
-        public int $totalTokens,
-        public ?float $cost,
-        public ?array $metadata,
-        public ?string $finishReason,
-        public ?array $toolCalls,
-        public ?array $structuredOutput,
+        public readonly mixed $content,
+        public readonly string $driver,
+        public readonly string $model,
+        public readonly int $inputTokens,
+        public readonly int $outputTokens,
+        public readonly int $totalTokens,
+        public readonly ?float $cost,
+        public readonly ?array $metadata,
+        public readonly ?string $finishReason,
+        public readonly ?array $toolCalls,
+        public readonly ?array $structuredOutput,
     ) {}
 
     /**

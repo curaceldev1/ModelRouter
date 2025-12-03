@@ -4,16 +4,16 @@ namespace Curacel\LlmOrchestrator\DataObjects;
 
 use Curacel\LlmOrchestrator\Enums\ContentType;
 
-final readonly class Content
+final class Content
 {
     /**
      * @param  string|array<int, mixed>  $data
      * @param  array<string, mixed>|null  $metadata
      */
     public function __construct(
-        public ContentType $type,
-        public string|array $data,
-        public ?array $metadata = null,
+        public readonly ContentType $type,
+        public readonly string|array $data,
+        public readonly ?array $metadata = null,
     ) {}
 
     /**

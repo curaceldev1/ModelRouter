@@ -2,7 +2,7 @@
 
 namespace Curacel\LlmOrchestrator\DataObjects;
 
-final readonly class Request
+final class Request
 {
     /**
      * @param  array<int, Message>  $messages
@@ -12,14 +12,14 @@ final readonly class Request
      * @param  array<string, mixed>|null  $rawPayload
      */
     public function __construct(
-        public ?string $model = null,
-        public ?int $maxTokens = null,
-        public ?float $temperature = null,
-        public array $messages = [],
-        public array $tools = [],
-        public array $options = [],
-        public ?array $responseFormat = null,
-        public ?array $rawPayload = null,
+        public readonly ?string $model = null,
+        public readonly ?int $maxTokens = null,
+        public readonly ?float $temperature = null,
+        public readonly array $messages = [],
+        public readonly array $tools = [],
+        public readonly array $options = [],
+        public readonly ?array $responseFormat = null,
+        public readonly ?array $rawPayload = null,
     ) {}
 
     /**

@@ -2,17 +2,17 @@
 
 namespace Curacel\LlmOrchestrator\DataObjects;
 
-final readonly class Schema
+final class Schema
 {
     /**
      * @param  array<int, Property>  $properties
      */
     public function __construct(
-        public string $name,
-        public ?string $description = null,
-        public array $properties = [],
-        public bool $strict = true,
-        public bool $additionalProperties = false,
+        public readonly string $name,
+        public readonly ?string $description = null,
+        public readonly array $properties = [],
+        public readonly bool $strict = true,
+        public readonly bool $additionalProperties = false,
     ) {}
 
     /**

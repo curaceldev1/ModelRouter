@@ -160,8 +160,7 @@ describe('AbstractDriver - Request Execution', function () {
         $this->loggerMock->shouldReceive('record')->once()
             ->with(Mockery::on(function ($arg) {
                 return $arg['is_successful'] === false
-                    && isset($arg['metadata']['failed_reason'])
-                    && $arg['metadata']['failed_reason'] === 'API Error';
+                    && $arg['failed_reason'] === 'API Error';
             }));
 
         $this->metricsMock->shouldReceive('record')->once()
@@ -312,7 +311,7 @@ describe('AbstractDriver - Data Preparation Methods', function () {
         $logData = invokeProtectedMethod($this->driver, 'prepareLogData', [$request, $response]);
 
         expect($logData)->toHaveKeys(['client', 'driver', 'model', 'input_tokens', 'output_tokens', 'total_tokens', 'cost', 'is_successful',
-            'finish_reason', 'request_data', 'response_data', 'metadata'])
+            'finish_reason', 'request_data', 'response_data'])
             ->and($logData['is_successful'])->toEqual(true)
             ->and($logData['finish_reason'])->toBe('stop');
     });
@@ -322,7 +321,7 @@ describe('AbstractDriver - Data Preparation Methods', function () {
         $logData = invokeProtectedMethod($this->driver, 'prepareLogData', [$request, null, 'API timeout']);
 
         expect($logData['is_successful'])->toEqual(false)
-            ->and($logData['metadata']['failed_reason'])->toBe('API timeout');
+            ->and($logData['failed_reason'])->toBe('API timeout');
     });
 
     it('prepares request data for logging correctly', function () {

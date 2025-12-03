@@ -222,10 +222,10 @@ return [
     |--------------------------------------------------------------------------
     |
     | Enable Laravel Nova integration for managing LLM data.
-    | Set to false if you don't want Nova resources.
+    | Set enabled to false if you don't want Nova resources.
     |
     */
     'nova' => [
-        'enabled' => env('LLM_NOVA_ENABLED', true),
+        'enabled' => env('LLM_NOVA_ENABLED', false),
     ],
 ];
