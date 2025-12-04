@@ -288,7 +288,7 @@ final class OpenAiDriver extends AbstractDriver
         $inputTokens = $usage['prompt_tokens'] ?? 0;
         $outputTokens = $usage['completion_tokens'] ?? 0;
         $totalTokens = $usage['total_tokens'] ?? 0;
-        $model = $response['model'] ?? $request->model ?? $this->getDefaultModel();
+        $model = $request->model ?? $this->getDefaultModel();
 
         return Response::make(
             content: $message['content'] ?? '',

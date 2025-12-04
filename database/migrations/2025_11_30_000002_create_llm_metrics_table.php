@@ -24,7 +24,7 @@ return new class extends Migration
             $table->bigInteger('input_tokens')->default(0);
             $table->bigInteger('output_tokens')->default(0);
             $table->bigInteger('total_tokens')->default(0);
-            $table->decimal('total_cost', 12, 6)->default(0);
+            $table->decimal('total_cost', 15, 12)->default(0);
             $table->timestamps();
 
             $table->unique(['date', 'client', 'driver', 'model']);

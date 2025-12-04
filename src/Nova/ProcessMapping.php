@@ -55,7 +55,8 @@ class ProcessMapping extends BaseResource
 
             Text::make('Process Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->help('A unique name identifying the LLM process. e.g., "claim_summary_generation"'),
 
             Select::make('Client')
                 ->options($this->getClientOptions())

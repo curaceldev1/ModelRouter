@@ -135,7 +135,7 @@ abstract class AbstractDriver
             'date' => now()->toDateString(),
             'client' => $this->getClient(),
             'driver' => $this->getName(),
-            'model' => $response->model ?? $request->model ?? $this->getDefaultModel(),
+            'model' => $request->model ?? $this->getDefaultModel(),
             'input_tokens' => $inputTokens,
             'output_tokens' => $outputTokens,
             'total_tokens' => $inputTokens + $outputTokens,
@@ -180,6 +180,7 @@ abstract class AbstractDriver
                 'role' => $message->role,
                 'content' => $this->sanitizeMessageContentForLogging($message),
             ], $request->messages),
+            'response_format' => $request->responseFormat,
             'tools' => array_map(fn (Tool $tool) => $tool->toArray(), $request->tools),
         ];
     }

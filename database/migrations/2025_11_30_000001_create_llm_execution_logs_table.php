@@ -20,10 +20,10 @@ return new class extends Migration
             $table->integer('input_tokens')->default(0);
             $table->integer('output_tokens')->default(0);
             $table->integer('total_tokens')->default(0);
-            $table->decimal('cost', 10, 6)->nullable();
+            $table->decimal('cost', 15, 12)->nullable();
             $table->boolean('is_successful')->index();
             $table->string('finish_reason', 50)->nullable();
-            $table->string('failed_reason')->nullable();
+            $table->text('failed_reason')->nullable();
             $table->json('request_data')->nullable();
             $table->json('response_data')->nullable();
             $table->timestamps();

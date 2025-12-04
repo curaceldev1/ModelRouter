@@ -11,7 +11,7 @@ final class Schema
         public readonly string $name,
         public readonly ?string $description = null,
         public readonly array $properties = [],
-        public readonly bool $strict = true,
+        public readonly bool $strict = false,
         public readonly bool $additionalProperties = false,
     ) {}
 
@@ -24,7 +24,7 @@ final class Schema
         string $name,
         ?string $description = null,
         array $properties = [],
-        bool $strict = true
+        bool $strict = false
     ): self {
         return new self($name, $description, $properties, $strict);
     }
@@ -62,13 +62,13 @@ final class Schema
         return [
             'name' => $this->name,
             'description' => $this->description,
-            'strict' => $this->strict,
             'schema' => [
                 'type' => 'object',
                 'properties' => $propertiesMap,
                 'required' => $required,
                 'additionalProperties' => $this->additionalProperties,
             ],
+            'strict' => $this->strict,
         ];
     }
 }

@@ -32,9 +32,7 @@ class LlmOrchestratorServiceProvider extends ServiceProvider
             ], 'migrations');
 
             // Register console commands
-            $this->commands([
-                Console\PruneLogsCommand::class,
-            ]);
+            $this->commands([Console\PruneLogsCommand::class]);
         }
 
         $this->registerNovaResources();

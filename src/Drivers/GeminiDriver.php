@@ -133,7 +133,7 @@ final class GeminiDriver extends AbstractDriver
         // Add response format for structured output (JSON schema)
         if ($request->responseFormat && ($request->responseFormat['type'] ?? null) === 'json_schema') {
             $generationConfig['responseMimeType'] = 'application/json';
-            $generationConfig['responseSchema'] = $request->responseFormat['json_schema']['schema'];
+            $generationConfig['responseJsonSchema'] = $request->responseFormat['json_schema']['schema'];
         } elseif ($request->responseFormat && ($request->responseFormat['type'] ?? null) === 'json_object') {
             $generationConfig['responseMimeType'] = 'application/json';
         }

@@ -64,7 +64,7 @@ return [
             'driver' => 'gemini',
             'api_key' => env('GEMINI_API_KEY'),
             'base_url' => env('GEMINI_API_BASE_URL', 'https://generativelanguage.googleapis.com'),
-            'model' => env('GEMINI_MODEL', 'gemini-1.5-pro'),
+            'model' => env('GEMINI_MODEL', 'gemini-2.5-flash'),
             'max_tokens' => env('GEMINI_MAX_TOKENS'),
             'timeout' => env('GEMINI_TIMEOUT'),
             'max_retries' => env('GEMINI_MAX_RETRIES'),
@@ -122,13 +122,13 @@ return [
         ],
 
         'gemini' => [
-            'gemini-1.5-pro' => [
-                'name' => 'Gemini 1.5 Pro',
+            'gemini-2.5-pro' => [
+                'name' => 'Gemini 2.5 Pro',
                 'input' => 1.25,
                 'output' => 5.00,
             ],
-            'gemini-1.5-flash' => [
-                'name' => 'Gemini 1.5 Flash',
+            'gemini-2.5-flash' => [
+                'name' => 'Gemini 2.5 Flash',
                 'input' => 0.075,
                 'output' => 0.30,
             ],

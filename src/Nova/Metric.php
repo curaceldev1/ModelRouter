@@ -3,7 +3,6 @@
 namespace Curacel\LlmOrchestrator\Nova;
 
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Currency;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
@@ -105,9 +104,20 @@ class Metric extends BaseResource
                 ->sortable()
                 ->displayUsing(fn ($value) => number_format($value)),
 
-            Currency::make('Total Cost')
-                ->currency('USD')
-                ->sortable(),
+            Text::make('Total Cost', function ($model) {
+                $value = $model->cost ?? 0;
+
+                $formatted = number_format($value, 12, '.', '');
+                $formatted = rtrim($formatted, '0');
+                if (str_ends_with($formatted, '.')) {
+                    $formatted .= '00';
+                }
+                if (preg_match('/\.(\d)$/', $formatted)) {
+                    $formatted .= '0';
+                }
+
+                return '$'.$formatted;
+            })->sortable(),
 
             DateTime::make('Created At')
                 ->hideFromIndex()

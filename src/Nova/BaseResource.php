@@ -22,15 +22,4 @@ abstract class BaseResource extends NovaResource
     {
         return $query->orderBy('created_at', 'desc');
     }
-
-    /**
-     * Get a JSON field for Nova display.
-     */
-    protected function getJsonField(string $label, string $attribute): \Laravel\Nova\Fields\Code
-    {
-        return \Laravel\Nova\Fields\Code::make($label, $attribute)
-            ->language('json')
-            ->rules('nullable', 'json')
-            ->readonly();
-    }
 }

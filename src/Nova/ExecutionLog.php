@@ -4,7 +4,7 @@ namespace Curacel\LlmOrchestrator\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
-use Laravel\Nova\Fields\Currency;
+use Laravel\Nova\Fields\Code;
 use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
@@ -69,15 +69,12 @@ class ExecutionLog extends BaseResource
         return [
             ID::make()->sortable(),
 
-            Badge::make('Status', 'is_successful')
-                ->map([
-                    1 => 'success',
-                    0 => 'danger',
-                ])
-                ->labels([
-                    'success' => 'Successful',
-                    'danger' => 'Failed',
-                ])
+            Badge::make('Status', function ($model) {
+                return $model->is_successful ? 'Successful' : 'Failed';
+            })->map([
+                'Successful' => 'success',
+                'Failed' => 'danger',
+            ])
                 ->sortable(),
 
             Text::make('Client')
@@ -101,10 +98,20 @@ class ExecutionLog extends BaseResource
                 ->sortable()
                 ->displayUsing(fn ($value) => number_format($value)),
 
-            Currency::make('Cost')
-                ->currency('USD')
-                ->sortable()
-                ->nullable(),
+            Text::make('Cost', function ($model) {
+                $value = $model->cost ?? 0;
+
+                $formatted = number_format($value, 12, '.', '');
+                $formatted = rtrim($formatted, '0');
+                if (str_ends_with($formatted, '.')) {
+                    $formatted .= '00';
+                }
+                if (preg_match('/\.(\d)$/', $formatted)) {
+                    $formatted .= '0';
+                }
+
+                return '$'.$formatted;
+            }),
 
             Text::make('Finish Reason')
                 ->nullable()
@@ -115,13 +122,9 @@ class ExecutionLog extends BaseResource
                 ->hideFromIndex()
                 ->readonly(),
 
-            $this->getJsonField('Request Data', 'request_data')
-                ->hideFromIndex()
-                ->nullable(),
+            Code::make('Request Data')->json(),
 
-            $this->getJsonField('Response Data', 'response_data')
-                ->hideFromIndex()
-                ->nullable(),
+            Code::make('Response Data')->json(),
 
             DateTime::make('Created At')
                 ->sortable()

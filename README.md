@@ -338,8 +338,8 @@ $tool = Tool::make(
     name: 'get_weather',
     description: 'Get current weather for a location',
     properties: [
-        Property::make('location', 'string', 'The city name', required: true),
-        Property::make('units', 'string', 'Temperature units (celsius/fahrenheit)'),
+        Property::string('location', 'The city name', required: true),
+        Property::string('units', 'Temperature units (celsius/fahrenheit)'),
     ]
 );
 
@@ -370,10 +370,15 @@ $schema = Schema::make(
     name: 'PersonInfo',
     description: 'Information about a person',
     properties: [
-        Property::make('name', 'string', 'Full name', required: true),
-        Property::make('age', 'integer', 'Age in years', required: true),
-        Property::make('occupation', 'string', 'Job title'),
-        Property::make('skills', 'array', 'List of skills'),
+        Property::string('name', 'Full name', required: true),
+        Property::number('age', 'Age in years', required: true),
+        Property::string('occupation', 'Job title'),
+        Property::array(
+            name: 'skills',
+            items: Property::string('skill', 'Single skill'),
+            description: 'List of skills',
+            required: true
+        ),
     ]
 );
 

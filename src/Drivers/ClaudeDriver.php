@@ -330,7 +330,7 @@ final class ClaudeDriver extends AbstractDriver
         $inputTokens = $usage['input_tokens'] ?? 0;
         $outputTokens = $usage['output_tokens'] ?? 0;
         $totalTokens = $inputTokens + $outputTokens;
-        $model = $response['model'] ?? $request->model ?? $this->getDefaultModel();
+        $model = $request->model ?? $this->getDefaultModel();
 
         return Response::make(
             content: $textContent,

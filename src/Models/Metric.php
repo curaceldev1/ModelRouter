@@ -10,7 +10,6 @@ class Metric extends Model
 
     protected $casts = [
         'date' => 'date:Y-m-d',
-        'total_cost' => 'decimal:6',
     ];
 
     public function __construct(array $attributes = [])
