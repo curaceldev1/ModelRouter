@@ -605,7 +605,7 @@ describe('GeminiDriver - Structured Output', function () {
         Http::assertSent(function ($request) {
             $payload = json_decode($request->body(), true);
 
-            return isset($payload['generationConfig']['responseSchema'])
+            return isset($payload['generationConfig']['responseJsonSchema'])
                 && isset($payload['generationConfig']['responseMimeType'])
                 && $payload['generationConfig']['responseMimeType'] === 'application/json';
         });
