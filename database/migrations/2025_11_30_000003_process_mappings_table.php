@@ -14,7 +14,7 @@ return new class extends Migration
 
         Schema::create($tableName, function (Blueprint $table) {
             $table->id();
-            $table->string('process_name')->index();
+            $table->string('process_name')->unique()->index();
             $table->string('client')->index();
             $table->string('model');
             $table->boolean('is_active')->default(true);
