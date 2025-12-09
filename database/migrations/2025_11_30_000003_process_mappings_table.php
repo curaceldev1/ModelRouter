@@ -25,7 +25,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        $tableName = config('llm-orchestrator.tables.metrics');
+        $tableName = config('llm-orchestrator.tables.process_mappings');
 
         if ($tableName) {
             Schema::dropIfExists($tableName);
