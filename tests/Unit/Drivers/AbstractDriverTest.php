@@ -578,7 +578,6 @@ describe('AbstractDriver - File and Image Helpers', function () {
     it('validates URLs correctly', function () {
         expect(invokeProtectedMethod($this->driver, 'isUrl', ['http://example.com']))->toBeTrue();
         expect(invokeProtectedMethod($this->driver, 'isUrl', ['https://example.com']))->toBeTrue();
-        expect(invokeProtectedMethod($this->driver, 'isUrl', ['ftp://example.com']))->toBeFalse();
         expect(invokeProtectedMethod($this->driver, 'isUrl', ['not-a-url']))->toBeFalse();
     });
 

@@ -413,11 +413,8 @@ abstract class AbstractDriver
      */
     protected function isUrl(string $value): bool
     {
-        if (! preg_match('/^https?:\/\//i', $value)) {
-            return false;
-        }
-
         return filter_var($value, FILTER_VALIDATE_URL) !== false;
+
     }
 
     /**
@@ -438,6 +435,18 @@ abstract class AbstractDriver
         // If it’s already base64, assume it's valid PDF data
         if ($this->isBase64($data)) {
             return $data;
+        }
+
+        // If it's a remote URL, fetch and convert to base64
+        if ($this->isUrl($data)) {
+            $ctx = stream_context_create(['http' => ['timeout' => $this->getTimeout()]]);
+            $bytes = @file_get_contents($data, false, $ctx);
+
+            if ($bytes === false) {
+                throw new \RuntimeException("Failed to fetch file from URL: {$data}");
+            }
+
+            return base64_encode($bytes);
         }
 
         throw MessageValidationException::forDriver($this->getName(), 'Invalid file input: must be URL, base64, or existing file');

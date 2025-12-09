@@ -46,7 +46,7 @@ final class Manager
      */
     public function request(): RequestBuilder
     {
-        return new RequestBuilder;
+        return new RequestBuilder();
     }
 
     /**

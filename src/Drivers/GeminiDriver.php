@@ -215,19 +215,7 @@ final class GeminiDriver extends AbstractDriver
 
         // If it's still a URL
         if ($this->isUrl($normalizedImage)) {
-            if (! empty($content->metadata['allow_url']) && $content->metadata['allow_url'] === true) {
-                return [
-                    'inlineData' => [
-                        'mimeType' => $defaultMimeType,
-                        'data' => $this->normalizeImageInputAsBase64FromUrl($normalizedImage),
-                    ],
-                ];
-            }
-
-            throw MessageValidationException::forDriver(
-                $this->getName(),
-                'Gemini driver requires base64/image file for URLs unless metadata.allow_url is true'
-            );
+            $normalizedImage = $this->normalizeImageInputAsBase64FromUrl($normalizedImage);
         }
 
         // At this point normalized is a data URL
