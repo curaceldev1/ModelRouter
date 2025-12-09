@@ -118,13 +118,11 @@ final class Manager
                 ->first();
 
             if ($processMapping) {
-                $driverInstance = $this->resolveDriver($processMapping->client);
-
                 // Set the model from the process mapping
                 $request = $request->withModel($processMapping->model);
 
                 // Send the request using the mapped client and model
-                return $driverInstance->send($request);
+                return $this->send($request, $processMapping->client);
             }
         }
 
@@ -133,13 +131,10 @@ final class Manager
         $processMapping = $processMappings[$processName] ?? null;
 
         if ($processMapping) {
-            $driverInstance = $this->resolveDriver($processMapping['client']);
-
             // Set the model from the process mapping
             $request = $request->withModel($processMapping['model']);
 
-            // Send the request using the mapped client and model
-            return $driverInstance->send($request);
+            return $this->send($request, $processMapping['client']);
         }
 
         // Fallback to default if no specific process mapping found
